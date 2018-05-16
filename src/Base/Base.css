@@ -1,0 +1,80 @@
+.base {
+    width: 500px;
+    height: 600px;
+    background: white;
+    box-shadow: 0px 15px 25px -5px gray;
+}
+
+.base .header {
+    color: white;
+    background: coral;
+    position: relative;
+    padding: 1em;
+}
+
+.base .header .title {
+    font-size: 2.0em;
+    display: block;
+    margin-top: 1em;
+}
+
+.base .header .location {
+    display: block;
+    font-size: 0.7em;
+    margin-top: 1em;
+    color: darkred;
+    font-weight: bold;
+}
+
+.heading-text {
+    display: block;
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.base .header .description {
+    display: block;
+}
+
+.base .header .close-date {
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: 0.8em;
+    color: darkred;
+    text-align: right;
+}
+
+.base .content {
+    padding: 1em;
+}
+
+.base .content section {
+    padding: 0.5em;
+    border-bottom: 1px solid #CCC;
+}
+
+.base .content section div {
+    color: steelblue;
+    margin-top: 5px;
+}
+
+.base .content .date-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+}
+
+.base .content .date-container > div {
+    width: 50%;
+    text-align: center;
+}
+
+.base .sub-heading-text {
+    color: gray;
+    font-weight: bold;
+}

@@ -1,0 +1,13 @@
+.add-remove-input {
+    display: block;
+    position: relative;
+}
+
+.chip {
+    padding: 0.4em;
+    background: darkred;
+    color:white;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
