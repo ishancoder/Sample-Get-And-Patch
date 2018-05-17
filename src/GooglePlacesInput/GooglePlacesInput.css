@@ -1,0 +1,17 @@
+.location-search-container {
+    min-width: 400px;
+    width: 100%;
+    position: relative;
+    text-align: right;
+}
+
+.location-search-input {
+    outline: none;
+    border: 2px solid coral;
+    padding: 0.8em;
+    border-radius: 50px;
+    margin: 5px;
+    color: coral;
+    display: inline-block;
+    min-width: 200px;
+}

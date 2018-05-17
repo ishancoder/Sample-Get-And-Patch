@@ -1,36 +1,54 @@
 import React from "react";
-import Input from "../Input/Input";
-import axios from "axios";
+import PropTypes from "prop-types";
+// import Input from "../Input/Input";
+import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete"
 import "./GooglePlacesInput.css";
 
 export default class GooglePlacesInput extends React.Component {
-    constructor() {
-        super();
-        this.state = {queryString: "", data: []};
+    constructor(props) {
+        super(props);
+        this.state = {address: props.value || ""};
     }
 
-    fetchResults(event) {
-        this.setState({...this.state, queryString: event.target.value})
-        axios.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+ event.target.value + "&radius=100000&key=AIzaSyBfBcNOvqKxqWV-utwsWL41RAS_q-m9NuQ")
-        .then((data)=>{
-            data = data.results.map((dataObject)=>{dataObject.formatted_address});
-            this.setState({...this.state, data: [...data]});
-        })
-        .catch((err)=>{
-            console.error(err);
-        });
+    handleChange = (address) => {
+        this.setState({address});
+    }
+
+    handleSelect = (address) => {
+        if(this.props.handleSelect) {
+            this.props.handleSelect(address);
+        }
+        geocodeByAddress(address)
+            .then(results => getLatLng(results[0]))
+            .catch(error=> console.log(error));
     }
 
     render() {
-        let locations = [];
-        locations = this.state.data.forEach((data, i)=><li key={i}>{data}</li>)
         return (
-            <div >
-                <Input label="Places" type="text" value={this.state.queryString} handleChange={this.fetchResults.bind(this)}/>
-                <div>
-                    {locations}
-                </div>
-            </div>
+            <PlacesAutocomplete value={this.state.address} onChange={this.handleChange} onSelect={this.handleSelect}>
+                {({getInputProps, suggestions, getSuggestionItemProps}) => (
+                    <div className="location-search-container">
+                        <label>City: </label>
+                        <input {...getInputProps({placeholder: 'Search Places', className: 'location-search-input'})}/>
+                        <div className="autocomplete-dropdown-container">
+                            {suggestions.map(suggestion => {
+                                const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
+                                const style = suggestion.active ? {backgroundColor: "#FAFAFA", cursor: "pointer"}
+                                                                 : {backgroundColor: "#FFFFFF", cursor: "pointer"};
+                                return (
+                                    <div {...getSuggestionItemProps(suggestion, {className, style})}>
+                                        <span>{suggestion.description}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+            </PlacesAutocomplete>
         );
     }
+}
+
+GooglePlacesInput.propTypes = {
+    handleSelect: PropTypes.func.isRequired,
 }

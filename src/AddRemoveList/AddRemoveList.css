@@ -17,6 +17,9 @@
 }
 
 .chip > span {
+    border: none;
+    background: transparent;
+    color: white;
     cursor: pointer;
     font-weight: bold;
     padding: 0.2em;

@@ -13,7 +13,7 @@ export default class Base extends React.Component {
             data: null,
             isLoading: true,
             hasError: false,
-            editEnabled: true,
+            editEnabled: false,
         };
     }
 
@@ -37,6 +37,10 @@ export default class Base extends React.Component {
         this.setState({...this.state, editEnabled: true});
     }
 
+    onSave(newData) {
+        this.setState({...this.state, data: newData, editEnabled: false});
+    }
+
     render() {
         if(this.state.isLoading) {
             return (
@@ -51,7 +55,7 @@ export default class Base extends React.Component {
         }
 
         if(this.state.editEnabled) {
-            return <EditCard data={this.state.data}/>
+            return <EditCard data={this.state.data} onSave={this.onSave.bind(this)}/>
         }
 
         const date = new Date(this.state.data.applications_close_date);
@@ -59,7 +63,7 @@ export default class Base extends React.Component {
             <div className="base">
                 <div className="header">
                     <span className="title">{this.state.data.title}</span>
-                    <span className="close-date"><strong>Closing on</strong> <br/>{date.toDateString() + ", " + date.toLocaleTimeString()}</span>
+                    <span className="close-date"><strong>Closing on</strong> <br/>{date.toDateString()}</span>
                     <span className="description">{this.state.data.description}</span>
                     <span className="location">{this.state.data.role_info.city}</span>
                 </div>
