@@ -1,7 +1,6 @@
 .text-input-container {
     min-width: 400px;
     width: 100%;
-    background: yellow;
     position: relative;
     text-align: right;
 }

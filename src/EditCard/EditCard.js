@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Input from "../Input/Input";
 import AddRemoveList from "../AddRemoveList/AddRemoveList";
+import GooglePlacesInput from "../GooglePlacesInput/GooglePlacesInput";
 import moment from "moment";
 import "./EditCard.css";
 
@@ -15,10 +16,8 @@ export default class EditCard extends React.Component {
         return {...nextProps.data};
     }
 
-    removeSkill(event) {
-        let skills = [...this.state.skills]
-        skills.splice(event.target.value, 1);
-        this.setState({...this.state, skills});
+    logState() {
+        console.log(this.state);
     }
 
     handleChange(event) {
@@ -44,6 +43,14 @@ export default class EditCard extends React.Component {
         }
     }
 
+    skillsChange(data) {
+        this.setState({...this.state, skills: [...data]});
+    }
+
+    backgroundsChange(data) {
+        this.setState({...this.state, backgrounds: [...data]});
+    }
+
     render() {
         const applicationCloseDate = moment(this.state.applications_close_date).format("YYYY-MM-DD");
         const earliestStartDate = moment(this.state.earliest_start_date).format("YYYY-MM-DD");
@@ -53,7 +60,9 @@ export default class EditCard extends React.Component {
                 <Input label="Opportunity Title" value={this.state.title} name="opportunity_name" type="text" handleChange={this.handleChange.bind(this)}/>
                 <Input label="Description" value={this.state.description} name="description" type="text" handleChange={this.handleChange.bind(this)}/>
                 <Input label="Salary" value={this.state.specifics_info.salary} name="salary" type="number" handleChange={this.handleChange.bind(this)}/>
-                <AddRemoveList name="skill_array" label="Skills" data={this.state.skills} handleChange={this.handleChange.bind(this)} removeData={this.removeSkill.bind(this)}/>
+                <AddRemoveList name="skill_array" label="Skills" data={this.state.skills} onChange={this.skillsChange.bind(this)}/>
+                <AddRemoveList name="background_array" label="Backgrounds" data={this.state.backgrounds} onChange={this.backgroundsChange.bind(this)} />
+                <GooglePlacesInput />
                 <Input label="Close Date" value={applicationCloseDate} name="close_date" type="date" handleChange={this.handleChange.bind(this)}/>
                 <Input label="Earliest Start Date" value={earliestStartDate}  name="earliest_start_date" type="date" handleChange={this.handleChange.bind(this)}/>
                 <Input label="Latest End Date" value={latestEndDate}  name="latest_end_date" type="date" handleChange={this.handleChange.bind(this)}/>

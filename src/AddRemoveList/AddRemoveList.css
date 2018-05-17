@@ -1,13 +1,34 @@
 .add-remove-input {
     display: block;
     position: relative;
+    min-width: 400px;
 }
 
 .chip {
     padding: 0.4em;
-    background: darkred;
+    font-size: 0.7em;
+    background: coral;
     color:white;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 1px;
     display: inline-block;
+    border-radius: 50px;
+}
+
+.chip > span {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.2em;
+}
+
+.data-field {
+    width: 60%;
+    max-width: 350px;
+    right: 0;
+    text-align: right;
+    margin-left: 40%;
+    max-height: 200px;
+    overflow-y: scroll;
+    border: 1px solid coral;
 }
