@@ -38,7 +38,22 @@ export default class Base extends React.Component {
     }
 
     onSave(newData) {
-        this.setState({...this.state, data: newData, editEnabled: false});
+        let opportunity = {access_token: "dd0df21c8af5d929dff19f74506c4a8153d7acd34306b9761fd4a57cfa1d483c", opportunity: {
+            title: newData.title,
+            description: newData.description,
+            applications_close_date: newData.applications_close_date,
+            role_info: newData.role_info,
+            backgrounds: newData.backgrounds,
+            skills: newData.skills,
+            specifics_info: newData.specifics_info,
+            earliest_start_date: newData.earliest_start_date,
+            latest_end_date: newData.latest_end_date
+        }};
+        axios.patch("http://gisapi-web-staging-1636833739.eu-west-1.elb.amazonaws.com/v2/opportunities/6124", opportunity)
+        .then((resp)=>(
+            this.setState({...this.state, data: newData, editEnabled: false})
+        ))
+        .catch((err)=>(console.error(err)));
     }
 
     render() {
