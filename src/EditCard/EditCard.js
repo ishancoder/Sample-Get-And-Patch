@@ -52,13 +52,11 @@ export default class EditCard extends React.Component {
                 break;
             case "earliest_start_date":
                 let startDate = new Date(event.target.value);
-                console.log(startDate.toISOString());
+                this.setState({...this.state, earliest_start_date: startDate});
                 break;
             case "latest_end_date":
                 let endDate = new Date(event.target.value);
-                console.log(endDate.toISOString());
-                break;
-            case "skill_array":
+                this.setState({...this.state, latest_end_date: endDate});
                 break;
             case "save":
                 this.props.onSave(this.state);
@@ -95,7 +93,7 @@ export default class EditCard extends React.Component {
         const earliestStartDate = moment(this.state.earliest_start_date).format("YYYY-MM-DD");
         const latestEndDate = moment(this.state.latest_end_date).format("YYYY-MM-DD");
         return (
-            <div>
+            <div className="edit-card-container">
                 <Input label="Opportunity Title" value={this.state.title} name="opportunity_name" type="text" handleChange={this.handleChange.bind(this)}/>
                 <Input label="Description" value={this.state.description} name="description" type="text" handleChange={this.handleChange.bind(this)}/>
                 <Input label="Salary" value={this.state.specifics_info.salary} name="salary" type="number" handleChange={this.handleChange.bind(this)}/>

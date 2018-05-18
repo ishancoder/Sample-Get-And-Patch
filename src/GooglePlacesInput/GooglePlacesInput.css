@@ -1,5 +1,5 @@
 .location-search-container {
-    min-width: 400px;
+    max-width: 400px;
     width: 100%;
     position: relative;
     text-align: right;

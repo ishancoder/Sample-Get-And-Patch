@@ -1,6 +1,6 @@
 .text-input-container {
-    min-width: 400px;
     width: 100%;
+    max-width: 400px;
     position: relative;
     text-align: right;
 }
@@ -13,5 +13,5 @@
     margin: 5px;
     color: coral;
     display: inline-block;
-    min-width: 200px;
+    max-width: 200px;
 }

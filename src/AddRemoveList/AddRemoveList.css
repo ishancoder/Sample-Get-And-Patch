@@ -1,7 +1,7 @@
 .add-remove-input {
     display: block;
     position: relative;
-    min-width: 400px;
+    max-width: 400px;
 }
 
 .chip {
@@ -30,7 +30,7 @@
     max-width: 350px;
     right: 0;
     text-align: right;
-    margin-left: 40%;
+    margin-left: 38%;
     max-height: 200px;
     overflow-y: scroll;
     border: 1px solid coral;
